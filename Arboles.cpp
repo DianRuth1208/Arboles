@@ -15,6 +15,7 @@ void agregarNodo(Nodo *&,int);
 void mostrarArbol(Nodo *,int);
 void preOrden(Nodo*);
 void enOrden(Nodo *);
+void postOrden(Nodo *);
 
 Nodo *arbol = NULL;
 
@@ -28,14 +29,15 @@ int main(){
 
 void menu(){
 	int dato, opcion,contador=0;
-	
+	cout<<"Se agrega Post-Orden\n";
 	do{
 		cout<<"\t**M E N U***"<<endl;
 		cout<<"1.-Agregar un nodo"<<endl;
 		cout<<"2.-Mostrar arbol"<<endl;
-		cout<<"3-Pre-Orden"<<endl;
-		cout<<"4-En Orden"<<endl;
-		cout<<"5-Salir"<<endl;
+		cout<<"3.-Pre-Orden"<<endl;
+		cout<<"4.-Orden"<<endl;
+		cout<<"5.-Post-Orden"<<endl;
+		cout<<"6-Salir"<<endl;
 		cout<<"Elige una opcion: ";
 		cin>>opcion;
 		
@@ -61,9 +63,14 @@ void menu(){
 					cout<<"\n\n";
 					system("pause");
 					break;
+			case 5: cout<<"Se muestra el recorrido Post-Orden: ";
+					postOrden(arbol);
+					cout<<"\n\n";
+					system("pause");
+					break;
 		}
 		system("cls");
-	}while(opcion != 5);
+	}while(opcion != 6);
 }
 
 
@@ -127,5 +134,16 @@ void enOrden(Nodo *arbol){
 		enOrden(arbol->izq);
 		cout<<arbol->dato<<" - ";
 		enOrden(arbol->der);
+	}
+}
+
+void postOrden(Nodo *arbol){
+	if(arbol == NULL){
+		return;
+	}
+	else{
+		enOrden(arbol->izq);
+		enOrden(arbol->der);
+		cout<<arbol->dato<<" - ";
 	}
 }
